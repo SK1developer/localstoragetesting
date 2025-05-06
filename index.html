@@ -1,55 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- ✅ Head -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Premium User Profile</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  
 </head>
 <body class="bg-gradient-to-r from-green-900 to-green-300 min-h-screen flex flex-col items-center justify-center p-4 font-[Poppins]">
 
-  <div class="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-6xl p-8 animate-fadeIn">
-    <h1 class="text-3xl text-white font-semibold text-center mb-8">🌟 Premium User Profile</h1>
-    
-    <div class="overflow-x-auto">
-      <table class="w-full text-center text-sm bg-white rounded-lg shadow">
+  <!-- ✅ Profile Container -->
+  <div class="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-6xl p-6 animate-fadeIn">
+
+    <!-- ✅ Title -->
+    <h1 class="text-3xl text-white font-semibold text-center mb-6">🌟 Premium User Profile</h1>
+
+    <!-- ✅ Desktop Table View -->
+    <div id="profileCard" class="hidden md:block overflow-x-auto">
+      <table class="w-full text-center text-sm bg-white rounded-lg shadow min-w-[600px]">
         <thead class="bg-green-600 text-white text-sm uppercase">
           <tr>
-            <th class="py-3 px-4">Name</th>
-            <th class="py-3 px-4">Address</th>
-            <th class="py-3 px-4">Mobile</th>
-            <th class="py-3 px-4">Date</th>
-            <th class="py-3 px-4">Gender</th>
-            <th class="py-3 px-4">City</th>
-            <th class="py-3 px-4">State</th>
-            <th class="py-3 px-4">Email</th>
+            <th class="py-3 px-2">Name</th>
+            <th class="hidden sm:table-cell py-3 px-2">Address</th>
+            <th class="py-3 px-2">Mobile</th>
+            <th class="py-3 px-2">Date</th>
+            <th class="py-3 px-2">Gender</th>
+            <th class="py-3 px-2">City</th>
+            <th class="hidden sm:table-cell py-3 px-2">State</th>
+            <th class="hidden sm:table-cell py-3 px-2">Email</th>
           </tr>
         </thead>
         <tbody class="text-gray-700">
           <tr class="border-t">
-            <td id="nameData" class="py-3 px-4">-</td>
-            <td id="addressData" class="py-3 px-4">-</td>
-            <td id="mobileData" class="py-3 px-4">-</td>
-            <td id="dateData" class="py-3 px-4">-</td>
-            <td id="genderData" class="py-3 px-4">-</td>
-            <td id="cityData" class="py-3 px-4">-</td>
-            <td id="stateData" class="py-3 px-4">-</td>
-            <td id="emailData" class="py-3 px-4">-</td>
+            <td id="nameData" class="py-3 px-2">-</td>
+            <td id="addressData" class="hidden sm:table-cell py-3 px-2">-</td>
+            <td id="mobileData" class="py-3 px-2">-</td>
+            <td id="dateData" class="py-3 px-2">-</td>
+            <td id="genderData" class="py-3 px-2">-</td>
+            <td id="cityData" class="py-3 px-2">-</td>
+            <td id="stateData" class="hidden sm:table-cell py-3 px-2">-</td>
+            <td id="emailData" class="hidden sm:table-cell py-3 px-2">-</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="flex justify-center mt-6 gap-4 flex-wrap">
+    <!-- ✅ Mobile View Card -->
+    <div id="mobileCard" class="md:hidden bg-white/30 backdrop-blur-md p-4 rounded-lg text-white w-full space-y-2">
+      <div class="grid grid-cols-1 gap-2">
+        <div><span class="font-semibold">Name:</span> <span id="nameDataMob">-</span></div>
+        <div><span class="font-semibold">Address:</span> <span id="addressDataMob">-</span></div>
+        <div><span class="font-semibold">Mobile:</span> <span id="mobileDataMob">-</span></div>
+        <div><span class="font-semibold">Date:</span> <span id="dateDataMob">-</span></div>
+        <div><span class="font-semibold">Gender:</span> <span id="genderDataMob">-</span></div>
+        <div><span class="font-semibold">City:</span> <span id="cityDataMob">-</span></div>
+        <div><span class="font-semibold">State:</span> <span id="stateDataMob">-</span></div>
+        <div><span class="font-semibold">Email:</span> <span id="emailDataMob">-</span></div>
+      </div>
+    </div>
+
+    <!-- ✅ Action Buttons -->
+    <div class="flex flex-col sm:flex-row justify-center mt-6 gap-4 w-full sm:w-auto">
       <button onclick="showForm()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition">Update</button>
       <button onclick="Delete()" class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition">Delete</button>
       <button onclick="location.href='login.html'" class="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600 transition">Create Account</button>
     </div>
-    
   </div>
 
-  <!-- Update Form -->
+  <!-- ✅ Update Form Section -->
   <div id="updateForm" class="bg-white/10 backdrop-blur-lg rounded-xl p-6 mt-6 w-full max-w-3xl hidden shadow-lg">
     <div class="grid md:grid-cols-2 gap-4">
       <input id="user" type="text" placeholder="Username" class="p-3 rounded border focus:outline-green-500" />
@@ -67,22 +85,21 @@
       <input id="email" type="email" placeholder="Email" class="p-3 rounded border focus:outline-green-500" />
     </div>
     <div class="mt-4 text-center">
-      <button onclick="saveUpdatedData()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-800">Save</button>
+      <button onclick="saveUpdatedData()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-800 w-full sm:w-auto max-w-xs">Save</button>
     </div>
   </div>
 
+  <!-- ✅ Script Section -->
   <script>
-    // Fill table from localStorage
-    const loadData = () => {
-      document.getElementById("nameData").textContent = localStorage.getItem("username") || "-";
-      document.getElementById("addressData").textContent = localStorage.getItem("address") || "-";
-      document.getElementById("mobileData").textContent = localStorage.getItem("mobile") || "-";
-      document.getElementById("dateData").textContent = localStorage.getItem("date") || "-";
-      document.getElementById("genderData").textContent = localStorage.getItem("gender") || "-";
-      document.getElementById("cityData").textContent = localStorage.getItem("city") || "-";
-      document.getElementById("stateData").textContent = localStorage.getItem("state") || "-";
-      document.getElementById("emailData").textContent = localStorage.getItem("email") || "-";
-    };
+    function loadData() {
+      const keys = ["username", "address", "mobile", "date", "gender", "city", "state", "email"];
+      keys.forEach(key => {
+        const value = localStorage.getItem(key) || "-";
+        const idKey = key === "username" ? "name" : key;
+        document.getElementById(`${idKey}Data`).textContent = value;
+        document.getElementById(`${idKey}DataMob`).textContent = value;
+      });
+    }
 
     function showForm() {
       document.getElementById("updateForm").style.display = "block";
@@ -116,15 +133,14 @@
       document.getElementById("updateForm").style.display = "none";
     }
 
-    loadData();
-
-
-
-
-    function Delete(){
-        localStorage.clear()
-        window.location.reload()
+    function Delete() {
+      localStorage.clear();
+      window.location.reload();
     }
+
+    // Load on start
+    loadData();
   </script>
+
 </body>
 </html>
