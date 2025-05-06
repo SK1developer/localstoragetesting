@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Premium User Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<body class="bg-gradient-to-r from-green-900 to-green-300 min-h-screen flex flex-col items-center justify-center p-4 font-[Poppins]">
+
+  <div class="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-6xl p-8 animate-fadeIn">
+    <h1 class="text-3xl text-white font-semibold text-center mb-8">🌟 Premium User Profile</h1>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full text-center text-sm bg-white rounded-lg shadow">
+        <thead class="bg-green-600 text-white text-sm uppercase">
+          <tr>
+            <th class="py-3 px-4">Name</th>
+            <th class="py-3 px-4">Address</th>
+            <th class="py-3 px-4">Mobile</th>
+            <th class="py-3 px-4">Date</th>
+            <th class="py-3 px-4">Gender</th>
+            <th class="py-3 px-4">City</th>
+            <th class="py-3 px-4">State</th>
+            <th class="py-3 px-4">Email</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+          <tr class="border-t">
+            <td id="nameData" class="py-3 px-4">-</td>
+            <td id="addressData" class="py-3 px-4">-</td>
+            <td id="mobileData" class="py-3 px-4">-</td>
+            <td id="dateData" class="py-3 px-4">-</td>
+            <td id="genderData" class="py-3 px-4">-</td>
+            <td id="cityData" class="py-3 px-4">-</td>
+            <td id="stateData" class="py-3 px-4">-</td>
+            <td id="emailData" class="py-3 px-4">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flex justify-center mt-6 gap-4">
+      <button onclick="showForm()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition">Update</button>
+      <button onclick="Delete()" class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition">Delete</button>
+    </div>
+  </div>
+
+  <!-- Update Form -->
+  <div id="updateForm" class="bg-white/10 backdrop-blur-lg rounded-xl p-6 mt-6 w-full max-w-3xl hidden shadow-lg">
+    <div class="grid md:grid-cols-2 gap-4">
+      <input id="user" type="text" placeholder="Username" class="p-3 rounded border focus:outline-green-500" />
+      <input id="mobile" type="text" maxlength="10" placeholder="Mobile Number" class="p-3 rounded border focus:outline-green-500" />
+      <input id="date" type="date" class="p-3 rounded border focus:outline-green-500" />
+      <select id="gender" class="p-3 rounded border focus:outline-green-500">
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <input id="add" type="text" placeholder="Address" class="p-3 rounded border focus:outline-green-500" />
+      <input id="city" type="text" placeholder="City" class="p-3 rounded border focus:outline-green-500" />
+      <input id="state" type="text" placeholder="State" class="p-3 rounded border focus:outline-green-500" />
+      <input id="email" type="email" placeholder="Email" class="p-3 rounded border focus:outline-green-500" />
+    </div>
+    <div class="mt-4 text-center">
+      <button onclick="saveUpdatedData()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-800">Save</button>
+    </div>
+  </div>
+
+  <script>
+    // Fill table from localStorage
+    const loadData = () => {
+      document.getElementById("nameData").textContent = localStorage.getItem("username") || "-";
+      document.getElementById("addressData").textContent = localStorage.getItem("address") || "-";
+      document.getElementById("mobileData").textContent = localStorage.getItem("mobile") || "-";
+      document.getElementById("dateData").textContent = localStorage.getItem("date") || "-";
+      document.getElementById("genderData").textContent = localStorage.getItem("gender") || "-";
+      document.getElementById("cityData").textContent = localStorage.getItem("city") || "-";
+      document.getElementById("stateData").textContent = localStorage.getItem("state") || "-";
+      document.getElementById("emailData").textContent = localStorage.getItem("email") || "-";
+    };
+
+    function showForm() {
+      document.getElementById("updateForm").style.display = "block";
+    }
+
+    function saveUpdatedData() {
+      const username = document.getElementById("user").value;
+      const mobile = document.getElementById("mobile").value;
+      const date = document.getElementById("date").value;
+      const gender = document.getElementById("gender").value;
+      const address = document.getElementById("add").value;
+      const city = document.getElementById("city").value;
+      const state = document.getElementById("state").value;
+      const email = document.getElementById("email").value;
+
+      if (mobile.length !== 10) {
+        alert("Mobile number must be 10 digits.");
+        return;
+      }
+
+      localStorage.setItem("username", username);
+      localStorage.setItem("mobile", mobile);
+      localStorage.setItem("date", date);
+      localStorage.setItem("gender", gender);
+      localStorage.setItem("address", address);
+      localStorage.setItem("city", city);
+      localStorage.setItem("state", state);
+      localStorage.setItem("email", email);
+
+      loadData();
+      document.getElementById("updateForm").style.display = "none";
+    }
+
+    loadData();
+
+
+
+
+    function Delete(){
+        localStorage.clear()
+        window.location.reload()
+    }
+  </script>
+</body>
+</html>

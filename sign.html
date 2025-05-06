@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg, #89f7fe, #66a6ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(20px);
+      border-radius: 16px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 0.7s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      color: #fff;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    input:focus, select:focus {
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .social {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .social a {
+      text-decoration: none;
+      color: white;
+      margin: 5px;
+      font-size: 14px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      display: none;
+      text-align: left;
+      margin-top: -5px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 25px 20px;
+      }
+    }
+    form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+.full-width {
+    text-align: center;
+}
+.social-full{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="first">
+    <h2 class="full-width">Sign Up</h2>
+    <div class="social-full">
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/128/174/174855.png" width="30px" alt="Instagram"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/128/733/733547.png" width="30px" alt="Facebook"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/128/5968/5968830.png" width="30px" alt="Twitter"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/128/3938/3938026.png" width="30px" alt="YouTube"></a>
+    </div>
+    
+    <form onsubmit="event.preventDefault(); signup();">
+      <input id="user" type="text" placeholder="Username" />
+      <input id="mobile" type="text" maxlength="10" placeholder="Mobile Number" />
+      <div class="error full-width" id="mobileError">Mobile number must be exactly 10 digits</div>
+    
+      <input id="date" type="date" />
+      <select id="gender">
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+    
+      <input id="add" type="text" placeholder="Address" class="full-width" />
+      <input id="city" type="text" placeholder="City" />
+      <input id="state" type="text" placeholder="State" />
+      <input id="email" type="email" placeholder="Email" />
+      <input id="pass" type="password" placeholder="Password" />
+    
+      <button type="submit" class="full-width">Sign Up</button>
+    </form>
+    </div>
+    
+
+<script>
+  const mobileInput = document.getElementById("mobile");
+  const mobileError = document.getElementById("mobileError");
+
+  mobileInput.addEventListener("input", () => {
+    if (mobileInput.value.length > 10) {
+      mobileError.style.display = "block";
+    } else {
+      mobileError.style.display = "none";
+    }
+  });
+
+  function signup() {
+    const username = document.getElementById("user").value;
+    const mobile = document.getElementById("mobile").value;
+    const date = document.getElementById("date").value;
+    const gender = document.getElementById("gender").value;
+    const address = document.getElementById("add").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("pass").value;
+
+    if (email && password && mobile.length === 10) {
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+      localStorage.setItem("username", username);
+      localStorage.setItem("address", address);
+      localStorage.setItem("mobile", mobile);
+      localStorage.setItem("date", date);
+      localStorage.setItem("gender", gender);
+      localStorage.setItem("city", city);
+      localStorage.setItem("state", state);
+      window.location.href = "./login.html";
+    } else {
+      alert("Please fill in all fields correctly.");
+    }
+  }
+</script>
+
+</body>
+</html>

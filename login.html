@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(120deg, #74ebd5, #ACB6E5);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      margin-top: 15px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .message {
+      margin-top: 15px;
+      color: red;
+      font-weight: bold;
+      height: 24px;
+    }
+
+    .social {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .social a {
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 25px;
+      }
+
+      .social {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Login Page</h2>
+  <div class="social">
+        <a class="social" href=""><img src="https://cdn-icons-png.flaticon.com/128/174/174855.png" width="30px" alt="Instagram"></a>
+        <a class="social" href="#"><img src="https://cdn-icons-png.flaticon.com/128/733/733547.png" width="30px" alt="Facebook"></a>
+        <a class="social" href="#"><img src="https://cdn-icons-png.flaticon.com/128/5968/5968830.png" width="30px" alt="Twitter"></a>
+        <a class="social" href="#"><img src="https://cdn-icons-png.flaticon.com/128/3938/3938026.png" width="30px" alt="YouTube"></a>
+    </div>
+
+  <input id="email" type="email" placeholder="Email" />
+  <input id="passs" type="password" placeholder="Password" />
+  <button onclick="mailing()">Submit</button>
+  <p class="message" id="yhadekh"></p>
+  <h4>create account <a href="sign.html">signup</a></h4>
+</div>
+
+<script>
+  let mail = localStorage.getItem("email");
+  let pass = localStorage.getItem("password");
+
+  function mailing() {
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("passs").value.trim();
+
+    if (email === mail && password === pass) {
+      document.getElementById("yhadekh").style.color = "green";
+      document.getElementById("yhadekh").innerHTML = "Login successfully";
+      console.log("Login successfully");
+      setTimeout(() => {
+        window.location.href = "./index.html";
+      }, 1000);
+    } else {
+      document.getElementById("yhadekh").style.color = "red";
+      document.getElementById("yhadekh").innerHTML = "Wrong email or password";
+      console.log("Wrong password");
+    }
+  }
+</script>
+
+</body>
+</html>
